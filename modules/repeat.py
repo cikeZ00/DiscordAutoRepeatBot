@@ -8,6 +8,7 @@ def write_config(change):
     with open("config.json", 'w') as f:
         json.dump(change, f, indent=4)
 
+
 class repeat(commands.Cog):
 
     def __init__(self, bot):
@@ -17,20 +18,23 @@ class repeat(commands.Cog):
     @commands.has_permissions(administrator=True)
     @commands.command(name="setmessage", description="Repeat specified")
     async def setmessaget(self, ctx, message):
-        config["Settings")]["repeat"] = str(message)
+        config["Settings"]["repeat_message"] = str(message)
         write_config(config)
+        await ctx.send("Set message!")
 
     @commands.has_permissions(administrator=True)
     @commands.command(name="settime", description="Set time in seconds (Default: 60)")
     async def settime(self, ctx, message):
-        config["Settings")]["seconds"] = int(message)
+        config["Settings"]["seconds"] = int(message)
         write_config(config)
+        await ctx.send("Set time!")
 
     @commands.has_permissions(administrator=True)
     @commands.command(name="setchannel", description="Set channel (ID)")
     async def setchannel(self, ctx, message):
-        config["Settings")]["channel"] = int(message)
+        config["Settings"]["channel"] = int(message)
         write_config(config)
+        await ctx.send("Set channel!")
 
 def setup(bot):
     bot.add_cog(repeat(bot))
